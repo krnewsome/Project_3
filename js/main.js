@@ -223,8 +223,8 @@ document.addEventListener(`DOMContentLoaded`, () => {
     //card number validation
     const cardNumValidation = () => {
         //check the format of the user credit card number
-        if ((creditCardNum.value.length > 16 || creditCardNum.value.length < 13) || (isNaN(parseInt(creditCardNum.value)) && form.payment.selectedIndex === 1)) {
-          //alert the user if the card number length is more that 0 but not in the correct format
+        if (((creditCardNum.value.length > 16 || creditCardNum.value.length < 13) || (isNaN(parseInt(creditCardNum.value)))) && (form.payment.selectedIndex === 1)) {
+          //alert the user if the card number length is more than 0 but not in the correct format
           cardLabel.className = `incorrectInput`;
           if (creditCardNum.value.length !== 0) {
             alert(`Please enter a valid 13 - 16 digit credit card number`);
