@@ -225,12 +225,13 @@ document.addEventListener(`DOMContentLoaded`, () => {
         //check the format of the user credit card number
         if (((creditCardNum.value.length > 16 || creditCardNum.value.length < 13) || (isNaN(parseInt(creditCardNum.value)))) && (form.payment.selectedIndex === 1)) {
           //alert the user if the card number length is more than 0 but not in the correct format
-          cardLabel.className = `incorrectInput`;
+          cardLabel.style.color = `red`;
+          creditCardNum.placeholder = `Enter valid credit card #`;
           if (creditCardNum.value.length !== 0) {
-            alert(`Please enter a valid 13 - 16 digit credit card number`);
+            alert(`Please enter a valid 13 - 16 digit credit card #`);
           }
         } else {
-          cardLabel.className = ``;
+          cardLabel.style.color = `black`;
 
         }
       };
@@ -239,12 +240,14 @@ document.addEventListener(`DOMContentLoaded`, () => {
     const zipValidation = () => {
       if ((zipNum.value.length !== 5 || isNaN(parseInt(zipNum.value))) && (form.payment.selectedIndex === 1)) {
         //alert the user if the zip number length is more that 0 but not in the correct format
-        zipLabel.className = `incorrectInput`;
+        zipLabel.style.color = `red`;
+        zipNum.placeholder = `Enter zip code`;
+
         if (zipNum.value.length !== 0) {
           alert(`Please enter a valid 5 digit zip code number`);
         }
       } else {
-        zipLabel.className = ``;
+        zipLabel.style.color = `black`;
       }
     };
 
@@ -252,12 +255,13 @@ document.addEventListener(`DOMContentLoaded`, () => {
     const cvvNumValidation = () => {
         if ((cvvNum.value.length !== 3 || isNaN(parseInt(cvvNum.value)))&& (form.payment.selectedIndex === 1)) {
           //alert the user if the cvv number length is more that 0 but not in the correct format
-          cvvLabel.className = `incorrectInput`;
+          cvvLabel.style.color = `red`;
+          cvvNum.placeholder = `Enter cvv`;
           if (cvvNum.value.length !== 0) {
             alert(`Please enter a valid 3 cvv number`);
           }
         } else {
-          cvvLabel.className = ``;
+          cvvLabel.style.color = `black`;
         }
       };
 
