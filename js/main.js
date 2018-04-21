@@ -51,8 +51,8 @@ document.addEventListener(`DOMContentLoaded`, () => {
       //hide color menu
       hideColorMenu();
 
-      //set payment default option to credit card
-      form.payment.options[1].selected = true;
+      //remove 'select payment' option from menu this will default the credit card option
+      form.payment.options[0].remove();
 
       // hide paypal and bitcoin p elements
       payPalMessage.style.display = `none`;
@@ -61,6 +61,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
       //add option item to color menu
       addOption.text = `Please select a T-shirt theme`;
       form.color.add(addOption);
+
     };
 
     /*T- SHIRT INFO Section*/
@@ -135,10 +136,10 @@ document.addEventListener(`DOMContentLoaded`, () => {
     //show payment message function
     const showPaymentMessage = (paymentType) => {
       //create an array of the payment messsages
-      let paymentMessages = [`Select Payment`, creditCardMessage, payPalMessage, bitcoinMessage];
+      let paymentMessages = [creditCardMessage, payPalMessage, bitcoinMessage];
 
       //show the payment message that the user selects and hide all other messages
-      for (let i = 1; i < paymentMessages.length; i++) {
+      for (let i = 0; i < paymentMessages.length; i++) {
         if (paymentType.value === form.payment[i].value) {
           paymentMessages[i].style.display = `block`;
         } else {
@@ -223,7 +224,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
     //card number validation
     const cardNumValidation = () => {
         //check the format of the user credit card number
-        if (((creditCardNum.value.length > 16 || creditCardNum.value.length < 13) || (isNaN(parseInt(creditCardNum.value)))) && (form.payment.selectedIndex === 1)) {
+        if (((creditCardNum.value.length > 16 || creditCardNum.value.length < 13) || (isNaN(parseInt(creditCardNum.value)))) && (form.payment.selectedIndex === 0)) {
           //alert the user if the card number length is more than 0 but not in the correct format
           cardLabel.style.color = `red`;
           creditCardNum.placeholder = `Enter valid credit card #`;
@@ -238,7 +239,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
     //zip code validation function
     const zipValidation = () => {
-      if ((zipNum.value.length !== 5 || isNaN(parseInt(zipNum.value))) && (form.payment.selectedIndex === 1)) {
+      if ((zipNum.value.length !== 5 || isNaN(parseInt(zipNum.value))) && (form.payment.selectedIndex === 0)) {
         //alert the user if the zip number length is more that 0 but not in the correct format
         zipLabel.style.color = `red`;
         zipNum.placeholder = `Enter zip code`;
@@ -253,7 +254,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
     //cvv number validation function
     const cvvNumValidation = () => {
-        if ((cvvNum.value.length !== 3 || isNaN(parseInt(cvvNum.value)))&& (form.payment.selectedIndex === 1)) {
+        if ((cvvNum.value.length !== 3 || isNaN(parseInt(cvvNum.value)))&& (form.payment.selectedIndex === 0)) {
           //alert the user if the cvv number length is more that 0 but not in the correct format
           cvvLabel.style.color = `red`;
           cvvNum.placeholder = `Enter cvv`;
@@ -291,7 +292,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
       //return true if the validation did not pass to stop form submission
       let formLabels = document.querySelectorAll(`label`);
       for (let i = 0; i < formLabels.length; i++) {
-        if (formLabels[i].className === `incorrectInput`) {
+        if (formLabels[i].className === `incorrectInput`|| formLabels[i].style.color === `red`){
           return true;
         }
       }
